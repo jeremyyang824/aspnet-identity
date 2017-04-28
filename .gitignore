@@ -1,6 +1,7 @@
 Debug/
 Release/
 obj/
+bin/
 .vs/
 _ReSharper.Caches/
 packages/
