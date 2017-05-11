@@ -31,7 +31,7 @@ namespace MSIdentityStarter.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginModel loginModel, string returnUrl)
+        public async Task<ActionResult> Login(LoginModel loginModel, string returnUrl = "/")
         {
             if (ModelState.IsValid)
             {
@@ -47,6 +47,10 @@ namespace MSIdentityStarter.Controllers
                     ClaimsIdentity identity =
                         await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
 
+                    //添加第三方Claim信息
+                    identity.AddClaims(LocationClaimsProvider.GetClaims(identity));
+                    identity.AddClaims(ClaimsRolesProvider.CreateRolesFromClaims(identity));
+
                     AuthManager.SignOut();
                     AuthManager.SignIn(
                         new AuthenticationProperties
@@ -60,6 +64,15 @@ namespace MSIdentityStarter.Controllers
             ViewBag.returnUrl = returnUrl;
             return View(loginModel);
         }
+
+
+        [Authorize]
+        public ActionResult Logout()
+        {
+            AuthManager.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
 
     }
 }

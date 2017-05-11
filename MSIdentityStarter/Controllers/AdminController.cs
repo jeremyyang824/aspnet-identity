@@ -11,6 +11,7 @@ using MSIdentityStarter.Models;
 
 namespace MSIdentityStarter.Controllers
 {
+    [Authorize(Roles = "Administrators")]
     public class AdminController : Controller
     {
         // GET: Admin

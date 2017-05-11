@@ -19,6 +19,7 @@ namespace MSIdentityStarter.Infrastructure
         {
             app.CreatePerOwinContext<AppIdentityDbContext>(AppIdentityDbContext.Create);
             app.CreatePerOwinContext<AppUserManager>(AppUserManager.Create);
+            app.CreatePerOwinContext<AppRoleManager>(AppRoleManager.Create);
 
             //add cookie based middleware to web application pipeline
             app.UseCookieAuthentication(new CookieAuthenticationOptions

@@ -11,5 +11,14 @@ namespace MSIdentityStarter.Models
     {
         [MaxLength(500)]
         public string Remark1 { get; set; }
+
+        public Cities City { get; set; }
+    }
+
+    public enum Cities
+    {
+        LONDON,
+        PARIS,
+        CHICAGO
     }
 }

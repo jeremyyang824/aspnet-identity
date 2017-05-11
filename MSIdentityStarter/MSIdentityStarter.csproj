@@ -137,10 +137,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\MSIdentityDb.ldf">
-      <DependentUpon>MSIdentityDb.mdf</DependentUpon>
-    </Content>
-    <Content Include="App_Data\MSIdentityDb.mdf" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -176,29 +172,49 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ClaimsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RoleAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\AppIdentityConfig.cs" />
     <Compile Include="Infrastructure\AppIdentityDbContext.cs" />
     <Compile Include="Infrastructure\AppIdentityDbInit.cs" />
+    <Compile Include="Infrastructure\AppRoleManager.cs" />
     <Compile Include="Infrastructure\AppUserManager.cs" />
+    <Compile Include="Infrastructure\ClaimsAccessAttribute.cs" />
+    <Compile Include="Infrastructure\ClaimsRolesProvider.cs" />
     <Compile Include="Infrastructure\CustomPasswordValidator.cs" />
     <Compile Include="Infrastructure\CustomUserValidator.cs" />
+    <Compile Include="Infrastructure\IdentityHelpers.cs" />
+    <Compile Include="Infrastructure\LocationClaimsProvider.cs" />
+    <Compile Include="Migrations\201705080606245_CityProperty.cs" />
+    <Compile Include="Migrations\201705080606245_CityProperty.Designer.cs">
+      <DependentUpon>201705080606245_CityProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AppRole.cs" />
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\CreateModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\RoleEditModel.cs" />
+    <Compile Include="Models\RoleModificationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
-    <None Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
     <None Include="Views\Admin\Create.cshtml" />
     <None Include="Views\Admin\Edit.cshtml" />
-    <None Include="Views\Admin\Error.cshtml" />
+    <None Include="Views\Claims\Index.cshtml" />
+    <None Include="Views\Home\UserProps.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\RoleAdmin\Create.cshtml" />
+    <None Include="Views\RoleAdmin\Edit.cshtml" />
+    <None Include="Views\RoleAdmin\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -206,7 +222,14 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201705080606245_CityProperty.resx">
+      <DependentUpon>201705080606245_CityProperty.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
